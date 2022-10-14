@@ -2,7 +2,7 @@
  exports.getAddress = async (username, password) => {
      const { AccountManager } = require('@iota/wallet');
      const manager = new AccountManager({
-         storagePath: './account-database',
+        storagePath: `./account-database/${username}-database`,
      });
  
      try {
@@ -40,7 +40,7 @@
  exports.addAddress = async (username, password)=> {
     const { AccountManager } = require('@iota/wallet');
     const manager = new AccountManager({
-        storagePath: './account-database',
+        storagePath: `./account-database/${username}-database`,
     });
 
     manager.setStrongholdPassword(password);

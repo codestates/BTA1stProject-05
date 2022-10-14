@@ -2,7 +2,7 @@ exports.getBalance = async (username, password) => {
      const { AccountManager } = require('@iota/wallet');
  
      const manager = new AccountManager({
-         storagePath: './account-database',
+        storagePath: `./account-database/${username}-database`,
      });
  
      manager.setStrongholdPassword(password);
@@ -31,7 +31,7 @@ exports.getBalance = async (username, password) => {
     } = require('@iota/wallet');
 
     const manager = new AccountManager({
-        storagePath: './account-database',
+        storagePath: `./account-database/${username}-database`,
     });
 
     manager.setStrongholdPassword(password);
@@ -47,7 +47,7 @@ exports.getBalance = async (username, password) => {
         const response = await account.send(address, amount, {
             remainderValueStrategy: RemainderValueStrategy.reuseAddress(),
         });
-
+        console.log('Available balance(after send)', balance-amount);
         const message = `Check your message on https://explorer.iota.org/devnet/message/${response.id}`
         console.log(message);
         return {

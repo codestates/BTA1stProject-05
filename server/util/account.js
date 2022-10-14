@@ -2,7 +2,7 @@ exports.createAccount = async (username, password) => {
     const { AccountManager, SignerType } = require('@iota/wallet');
 
     const manager = new AccountManager({
-        storagePath: './account-database',
+        storagePath: `./account-database/${username}-database`,
     });
 
     try {
@@ -46,7 +46,7 @@ exports.createAccount = async (username, password) => {
     } catch (error) {
         console.log('Error: ' + error);
         return {
-            resultMessage:error
+            resultMessage:"account already exists or wrong password"
         }
     }
 }
@@ -56,7 +56,7 @@ exports.getAccount = async (username, password) => {
     const { AccountManager, SignerType } = require('@iota/wallet');
 
     const manager = new AccountManager({
-        storagePath: './account-database',
+        storagePath: `./account-database/${username}-database`,
     });
 
     try {
