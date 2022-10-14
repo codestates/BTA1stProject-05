@@ -2,12 +2,27 @@
 
 ### 팀명 : 아이오타닷
 ### 코인 : IOTA
+### 프로젝트명 : 탱글탱글한 오타
 
 #### 구조
 - server (node.js) : REST API
+  - iota node.js sdk 버전
+  - @iota/wallet": "^1.0.17
 - client (chrome-extension)
 
-#### REST API (JSON)
+
+#### 관련링크
+- https://explorer.iota.org/devnet
+  - IOTA explorer
+- https://faucet.chrysalis-devnet.iota.cafe/
+  - 테스트넷 코인 받기
+- https://github.com/iotaledger/wallet.rs
+  - IOTA SDK github
+
+#### Client
+- chrome extension 사용
+
+#### Server REST API (JSON)
 - 계정확인
 - GET : /wallet/account (username, password)
   - response
