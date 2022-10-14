@@ -1,7 +1,15 @@
-exports.getAccount = (req, res, next) => {
-    res.status(200).json({ username: 'testuser', account: 'testaccount', message: 'user account' });
+const accountUtil = require('../util/account')
+
+exports.getAccount = async (req, res, next) => {
+    const username = req.body.username
+    const password = req.body.password
+    const result = await accountUtil.getAccount(username, password)
+    res.status(200).json(result);
 }
 
-exports.createAccount = (req, res, next) => {
-    res.status(201).json({ username: 'testuser', account: 'testaccount', message:'user created' });
+exports.createAccount = async (req, res, next) => {
+    const username = req.body.username
+    const password = req.body.password
+    const result = await accountUtil.createAccount(username, password)
+    res.status(200).json(result);
 }
