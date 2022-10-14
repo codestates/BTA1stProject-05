@@ -5,6 +5,8 @@ exports.createAccount = async (username, password) => {
         storagePath: './account-database',
     });
 
+    let mnemonic
+
     try {
         manager.setStrongholdPassword(password);
         let account;
@@ -16,6 +18,9 @@ exports.createAccount = async (username, password) => {
 
         // Create account only if it does not already exist
         if (!account) {
+            menmonic = await manager.generateMnemonic();
+            console.log('Mnemonic: ', menmonic)
+
             manager.storeMnemonic(SignerType.Stronghold);
             account = manager.createAccount({
                 clientOptions: {
@@ -36,6 +41,7 @@ exports.createAccount = async (username, password) => {
         console.log('Synced account', synced);
         return {
             accountId:account.id(),
+            menmonic:menmonic,
             resultMessage: "account created",
         }
     } catch (error) {

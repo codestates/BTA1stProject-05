@@ -34,12 +34,13 @@
     }
 ```
 
-- 계정추가
+- 계정생성
 - POST : /wallet/account (username, password)
   - response
 ```
 {
     "accountId": "wallet-account://b3ccc1f*****3240f9",
+    "menmonic": "sniff wish idle ... situate",
     "resultMessage": "account created"
 }
 ```
