@@ -6,7 +6,7 @@
 // chrome.storage.local.set({key: value}, function() {
 //   alert('Value is set to ' + value);
 // });
-console.log('');
+console.log('허허....');
 // chrome.storage.local.get('mnemonic', function(result) {
 //   console.log(result);
 //   console.log('저장된 니모닉 ' + result.mnemonic);
