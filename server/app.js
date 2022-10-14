@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express()
 const accountRoute = require('./routes/account')
+const addressRoute = require('./routes/address')
+const coinRoute = require('./routes/coin')
 
 
 app.use(bodyParser.json());
@@ -16,6 +18,8 @@ app.use((req, res, next) => {
   });
 
 
-  app.use('/user', accountRoute);
+  app.use('/wallet', accountRoute);
+  app.use('/wallet', addressRoute);
+  app.use('/wallet', coinRoute);
 
   app.listen(3000);
