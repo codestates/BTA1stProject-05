@@ -40,7 +40,7 @@
 ```
 {
     "accountId": "wallet-account://b3ccc1f*****3240f9",
-    "menmonic": "sniff wish idle ... situate",
+    "mnemonic": "sniff wish idle ... situate",
     "resultMessage": "account created"
 }
 ```

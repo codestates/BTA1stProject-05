@@ -5,9 +5,8 @@ exports.createAccount = async (username, password) => {
         storagePath: './account-database',
     });
 
-    let mnemonic
-
     try {
+        let mnemonic
         manager.setStrongholdPassword(password);
         let account;
         try {
@@ -18,10 +17,10 @@ exports.createAccount = async (username, password) => {
 
         // Create account only if it does not already exist
         if (!account) {
-            menmonic = await manager.generateMnemonic();
-            console.log('Mnemonic: ', menmonic)
+            mnemonic = await manager.generateMnemonic();
+            console.log('Mnemonic: ', mnemonic)
 
-            manager.storeMnemonic(SignerType.Stronghold);
+            manager.storeMnemonic(SignerType.Stronghold, mnemonic);
             account = manager.createAccount({
                 clientOptions: {
                     node: { url: 'https://api.lb-0.h.chrysalis-devnet.iota.cafe' },
@@ -41,11 +40,14 @@ exports.createAccount = async (username, password) => {
         console.log('Synced account', synced);
         return {
             accountId:account.id(),
-            menmonic:menmonic,
+            mnemonic:mnemonic,
             resultMessage: "account created",
         }
     } catch (error) {
         console.log('Error: ' + error);
+        return {
+            resultMessage:error
+        }
     }
 }
 
