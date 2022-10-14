@@ -10,7 +10,7 @@
          const mnemonic = await manager.generateMnemonic();
          console.log('Mnemonic:', mnemonic);
  
-         await manager.verifyMnemonic(mnemonic);
+        //  await manager.verifyMnemonic(mnemonic);
  
          await manager.storeMnemonic(mnemonic);
          console.log('Mnemonic successfully stored!');
