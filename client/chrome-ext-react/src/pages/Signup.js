@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Blocks } from "react-loader-spinner";
+import { Button, Container, Stack, TextField } from "@mui/material";
 
 const Signup = () => {
   const [username, setUsername] = useState(null);
@@ -26,6 +27,7 @@ const Signup = () => {
           "http://localhost:8080/wallet/account"
         );
         console.log(response.data);
+        // 기존 account 가 있는지 확인 로직 추가 필요
       } catch (e) {}
     } else {
       console.log("password is different");
@@ -48,42 +50,52 @@ const Signup = () => {
   };
 
   return (
-    <main>
+    <Container>
       <div>
         <h1>Sign up</h1>
         <div className="loading">
           <Blocks visible={loading} height="80" width="80" />
         </div>
+        <Stack spacing={1}>
+          <label>Username</label>
 
-        <label>Username</label>
-        <input
-          name="username"
-          type="text"
-          placeholder="Username"
-          onChange={onChangeUsername}
-        />
-        <hr />
-        <label>Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="password"
-          onChange={onChangePassword}
-        />
-        <hr />
-        <label>Password(check)</label>
-        <input
-          name="password2"
-          type="password"
-          placeholder="password"
-          onChange={onChangePasswordCheck}
-        />
-        <hr />
-        <button onClick={signupRequest}>Submit</button>
-        <hr />
-        <Link to="/">Home</Link>
+          <TextField
+            required
+            id="outlined-required"
+            label="Username"
+            onChange={onChangeUsername}
+          />
+
+          <label>Password</label>
+
+          <TextField
+            required
+            id="outlined-required"
+            label="password"
+            type="password"
+            onChange={onChangePassword}
+          />
+
+          <label>Password(check)</label>
+
+          <TextField
+            required
+            id="outlined-required"
+            label="password2"
+            type="password"
+            onChange={onChangePasswordCheck}
+          />
+          <hr />
+          <Button variant="contained" onClick={signupRequest}>
+            Submit
+          </Button>
+          <hr />
+          <Button variant="contained">
+            <Link to="/">Home</Link>
+          </Button>
+        </Stack>
       </div>
-    </main>
+    </Container>
   );
 };
 
