@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Blocks } from "react-loader-spinner";
+import { Box, TextField, Button, Stack, Container } from "@mui/material";
 
 const Login = () => {
   const [username, setUsername] = useState(null);
@@ -31,34 +32,43 @@ const Login = () => {
   };
 
   return (
-    <main>
+    <Container>
       <div>
         <h1>Login</h1>
         <div className="loading">
           <Blocks visible={loading} height="80" width="80" />
         </div>
 
-        <label>Username</label>
-        <input
-          name="username"
-          type="text"
-          placeholder="Username"
-          onChange={onChangeUsername}
-        />
-        <hr />
-        <label>Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="password"
-          onChange={onChangePassword}
-        />
-        <hr />
-        <button onClick={loginRequest}>Submit</button>
-        <hr />
-        <Link to="/">Home</Link>
+        <Stack spacing={1}>
+          <label>Username</label>
+
+          <TextField
+            required
+            id="outlined-required"
+            label="Username"
+            onChange={onChangeUsername}
+          />
+
+          <label>Password</label>
+
+          <TextField
+            required
+            id="outlined-required"
+            label="password"
+            type="password"
+            onChange={onChangePassword}
+          />
+          <hr />
+          <Button variant="contained" onClick={loginRequest}>
+            Submit
+          </Button>
+          <hr />
+          <Button variant="contained">
+            <Link to="/">Home</Link>
+          </Button>
+        </Stack>
       </div>
-    </main>
+    </Container>
   );
 };
 

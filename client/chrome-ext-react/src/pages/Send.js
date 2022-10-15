@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Blocks } from "react-loader-spinner";
+import { Button, Container, Stack, TextField } from "@mui/material";
 
 const Send = () => {
   const [username, setUsername] = useState(null);
@@ -49,36 +50,46 @@ const Send = () => {
   };
 
   return (
-    <main>
+    <Container>
       <div>
         <h1>Send IOTA Coin</h1>
         <div className="loading">
           <Blocks visible={loading} height="80" width="80" />
         </div>
-        <label>Current Balance : </label>
-        {balance ? balance : "?"}
-        <hr />
-        <label>Address</label>
-        <input
-          name="address"
-          type="text"
-          placeholder="address"
-          onChange={onChangeAddress}
-        />
-        <hr />
-        <label>Amount</label>
-        <input
-          name="amount"
-          type="number"
-          placeholder="amount"
-          onChange={onChangeAmount}
-        />
-        <hr />
-        <button onClick={sendRequest}>Confirm</button>
-        <hr />
-        <Link to="/account">Go to Account</Link>
+        <Stack spacing={2}>
+          <label>Current Balance</label>
+          <label>{balance ? balance : "?"}</label>
+          <hr />
+          <label>Address</label>
+
+          <TextField
+            required
+            id="outlined-required"
+            label="address"
+            type="text"
+            onChange={onChangeAddress}
+          />
+
+          <label>Amount</label>
+
+          <TextField
+            required
+            id="outlined-required"
+            label="amount"
+            type="number"
+            onChange={onChangeAmount}
+          />
+          <hr />
+          <Button variant="contained" onClick={sendRequest}>
+            Confirm
+          </Button>
+          <hr />
+          <Button variant="contained">
+            <Link to="/account">Go to Account</Link>
+          </Button>
+        </Stack>
       </div>
-    </main>
+    </Container>
   );
 };
 
