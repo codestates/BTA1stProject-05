@@ -1,0 +1,26 @@
+{
+  "name": "아이오타닷",
+  "description": "탱글탱글한 하모니(Harmony ONE) 블록체인 지갑(Wallet) 입니다",
+  "version": "1.0.0",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "short_name": "IOTA Wallet",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "/images/n16.png",
+      "32": "/images/n32.png",
+      "48": "/images/n48.png",
+      "128": "/images/n128.png"
+    },
+    "icons": {
+      "16": "/images/n16.png",
+      "32": "/images/n32.png",
+      "48": "/images/n48.png",
+      "128": "/images/n128.png"
+    }
+  },
+  "manifest_version": 3
+}
