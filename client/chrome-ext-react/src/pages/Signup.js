@@ -12,6 +12,7 @@ const Signup = () => {
   const [password, setPassword] = useState(null);
   const [passwordCheck, setPasswordCheck] = useState(null);
   const [result, setResult] = useState(null);
+  const [message, setMessage] = useState(null);
   const [gusername, setGusername] = useRecoilState(usernameState);
   const [gpassword, setGpassword] = useRecoilState(passwordState);
 
@@ -35,11 +36,11 @@ const Signup = () => {
         console.log(response.data);
         setResult(response.data);
         setLoading(false);
-        setPassword(null);
-        setPasswordCheck(null);
       } catch (e) {}
     } else {
       console.log("password is different");
+      setMessage("check password and password2");
+      setLoading(false);
     }
   };
 
@@ -66,42 +67,47 @@ const Signup = () => {
           <Blocks visible={loading} height="80" width="80" />
         </div>
         <Stack spacing={1}>
-          <label>Username</label>
+          {!result ? (
+            <>
+              <label>Username</label>
 
-          <TextField
-            required
-            id="outlined-required"
-            label="Username"
-            onChange={onChangeUsername}
-          />
+              <TextField
+                required
+                id="outlined-required"
+                label="Username"
+                onChange={onChangeUsername}
+              />
 
-          <label>Password</label>
+              <label>Password</label>
 
-          <TextField
-            required
-            id="outlined-required"
-            label="password"
-            type="password"
-            onChange={onChangePassword}
-          />
+              <TextField
+                required
+                id="outlined-required"
+                label="password"
+                type="password"
+                onChange={onChangePassword}
+              />
 
-          <label>Password(check)</label>
+              <label>Password(check)</label>
 
-          <TextField
-            required
-            id="outlined-required"
-            label="password2"
-            type="password"
-            onChange={onChangePasswordCheck}
-          />
-          <hr />
-          <Button variant="contained" onClick={signupRequest}>
-            Submit
-          </Button>
+              <TextField
+                required
+                id="outlined-required"
+                label="password2"
+                type="password"
+                onChange={onChangePasswordCheck}
+              />
+
+              {message ? <div className="message">{message}</div> : null}
+              <Button variant="contained" onClick={signupRequest}>
+                Submit
+              </Button>
+            </>
+          ) : null}
           <hr />
           {result ? (
             <>
-              <label>Result</label>
+              <label>Result Message</label>
               <div className="message">{result.resultMessage}</div>
             </>
           ) : null}
