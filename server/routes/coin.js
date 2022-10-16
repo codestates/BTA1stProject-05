@@ -1,11 +1,10 @@
-const express = require('express');
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const coinController = require('../controller/coin')
+const coinController = require("../controller/coin");
 
-router.get('/coin', coinController.getBalance)
+router.post("/coin/balance", coinController.getBalance);
 
-router.post('/coin', coinController.sendCoin)
+router.post("/coin/send", coinController.sendCoin);
 
-
-module.exports = router
+module.exports = router;

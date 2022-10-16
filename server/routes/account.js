@@ -1,11 +1,11 @@
-const express = require('express');
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const accountController = require('../controller/account')
+const accountController = require("../controller/account");
 
-router.get('/account', accountController.getAccount)
+// router.get('/account', accountController.getAccount)
+router.post("/account", accountController.getAccount);
 
-router.post('/account', accountController.createAccount)
+router.post("/account/new", accountController.createAccount);
 
-
-module.exports = router
+module.exports = router;

@@ -1,11 +1,10 @@
-const express = require('express');
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const addressController = require('../controller/address')
+const addressController = require("../controller/address");
 
-router.get('/address', addressController.getAddress)
+router.post("/address", addressController.getAddress);
 
-router.post('/address', addressController.addAddress)
+router.post("/address/add", addressController.addAddress);
 
-
-module.exports = router
+module.exports = router;

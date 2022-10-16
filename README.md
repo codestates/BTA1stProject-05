@@ -1,17 +1,20 @@
 # BTA1stProject-05
 
 ### 팀명 : 아이오타닷
+
 ### 코인 : IOTA
+
 ### 프로젝트명 : 탱글탱글한 오타
 
 #### 구조
+
 - server (node.js) : REST API
   - iota node.js sdk 버전
   - @iota/wallet": "^1.0.17
 - client (chrome-extension)
 
-
 #### 관련링크
+
 - https://explorer.iota.org/devnet
   - IOTA explorer
 - https://faucet.chrysalis-devnet.iota.cafe/
@@ -20,11 +23,13 @@
   - IOTA SDK github
 
 #### Client
+
 - chrome extension 사용
 
 #### Server REST API (JSON)
+
 - 계정확인
-- GET : /wallet/account (username, password)
+- POST : /wallet/account (username, password)
   - response
 
 ```
@@ -35,8 +40,9 @@
 ```
 
 - 계정생성
-- POST : /wallet/account (username, password)
+- POST : /wallet/account/new (username, password)
   - response
+
 ```
 {
     "accountId": "wallet-account://b3ccc1f*****3240f9",
@@ -46,8 +52,9 @@
 ```
 
 - 주소확인
-- GET : /wallet/address (username, password)
+- POST : /wallet/address (username, password)
   - response
+
 ```
 {
     "addresses": [
@@ -71,8 +78,9 @@
 ```
 
 - 주소추가
-- POST : /wallet/address (username, password)
+- POST : /wallet/address/add (username, password)
   - response
+
 ```
 {
     "newAddress": {
@@ -104,8 +112,9 @@
 ```
 
 - 잔액
-- GET : /wallet/coin (username, password)
+- POST : /wallet/coin/balance (username, password)
   - response
+
 ```
 {
     "accountId": "wallet-account://f0cefde5f2***096b5a694",
@@ -115,8 +124,9 @@
 ```
 
 - 코인전송
-- POST : /wallet/coin (username, password, address, amount)
+- POST : /wallet/coin/send (username, password, address, amount)
   - response
+
 ```
 {
     "accountId": "wallet-account://f0cefd***67096b5a694",
