@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Blocks } from "react-loader-spinner";
 import { Button, Container, Stack, TextField } from "@mui/material";
+import { useRecoilState } from "recoil";
+import { passwordState, usernameState } from "../utils/account_state";
 
 const Signup = () => {
   const [username, setUsername] = useState(null);
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState(null);
   const [passwordCheck, setPasswordCheck] = useState(null);
+  const [result, setResult] = useState(null);
+  const [gusername, setGusername] = useRecoilState(usernameState);
+  const [gpassword, setGpassword] = useRecoilState(passwordState);
 
   const checkPassword = (password, passwordCheck) => {
     if (password === passwordCheck) {
@@ -24,10 +29,14 @@ const Signup = () => {
       console.log("password is same");
       try {
         const response = await axios.post(
-          "http://localhost:8080/wallet/account"
+          "http://localhost:8080/wallet/account/new",
+          { username: username, password: password }
         );
         console.log(response.data);
-        // 기존 account 가 있는지 확인 로직 추가 필요
+        setResult(response.data);
+        setLoading(false);
+        setPassword(null);
+        setPasswordCheck(null);
       } catch (e) {}
     } else {
       console.log("password is different");
@@ -90,6 +99,26 @@ const Signup = () => {
             Submit
           </Button>
           <hr />
+          {result ? (
+            <>
+              <label>Result</label>
+              <div className="message">{result.resultMessage}</div>
+            </>
+          ) : null}
+          {result ? (
+            <>
+              <label>Wallet ID</label>
+              <div className="message">{result.accountId}</div>
+            </>
+          ) : null}
+
+          {result ? (
+            <>
+              <label>mnemonic</label>
+              <div className="message">{result.mnemonic}</div>
+            </>
+          ) : null}
+
           <Button variant="contained">
             <Link to="/">Home</Link>
           </Button>

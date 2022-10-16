@@ -19,3 +19,20 @@ a {
   text-decoration: none;
   color: white;
 }
+
+.address {
+  width: 100%;
+  overflow-wrap: break-word;
+  background-color: lightblue;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.message {
+  width: 100%;
+  overflow-wrap: break-word;
+  background-color: lightgreen;
+  border-radius: 1rem;
+  text-align: center;
+  padding: 0.5rem;
+}

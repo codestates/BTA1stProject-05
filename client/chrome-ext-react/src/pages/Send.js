@@ -3,41 +3,59 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Blocks } from "react-loader-spinner";
 import { Button, Container, Stack, TextField } from "@mui/material";
+import { useRecoilState } from "recoil";
+import { passwordState, usernameState } from "../utils/account_state";
 
 const Send = () => {
-  const [username, setUsername] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [password, setPassword] = useState(null);
+
   const [amount, setAmount] = useState(null);
   const [address, setAddress] = useState(null);
   const [balance, setBalance] = useState(null);
+  const [result, setResult] = useState(null);
+  const [gusername, setGusername] = useRecoilState(usernameState);
+  const [gpassword, setGpassword] = useRecoilState(passwordState);
 
-  const sendRequest = async () => {
-    console.log(username);
-    console.log(password);
-    console.log(amount);
-    console.log(address);
+  const fetchAccount = async () => {
+    console.log(gusername);
+    console.log(gpassword);
     setLoading(true);
-
-    // try {
-    //   const response = await axios.post("http://localhost:8080/wallet/coin");
-    //   console.log(response.data);
-    // } catch (e) {}
-    // setLoading(false);
+    const response = await axios.post(
+      "http://localhost:8080/wallet/coin/balance",
+      {
+        username: gusername,
+        password: gpassword,
+      }
+    );
+    setResult(response.data);
+    setLoading(false);
   };
 
-  const checkBalance = () => {
+  const sendCoin = async () => {
     setLoading(true);
-    // try {
-    //   const response = await axios.post("http://localhost:8080/wallet/coin");
-    //   console.log(response.data);
-    // } catch (e) {}
-    // setLoading(false);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/wallet/coin/send",
+        {
+          username: gusername,
+          password: gpassword,
+          address: address,
+          amount: parseInt(amount),
+        }
+      );
+      console.log(response.data);
+      setResult(response.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  useEffect(() => {
-    checkBalance();
-  });
+  const initialize = () => {
+    fetchAccount();
+  };
+
+  useEffect(initialize, []);
 
   const onChangeAmount = (e) => {
     setAmount(e.target.value);
@@ -58,7 +76,7 @@ const Send = () => {
         </div>
         <Stack spacing={2}>
           <label>Current Balance</label>
-          <label>{balance ? balance : "?"}</label>
+          <label>{result ? result.balance : null}</label>
           <hr />
           <label>Address</label>
 
@@ -80,9 +98,13 @@ const Send = () => {
             onChange={onChangeAmount}
           />
           <hr />
-          <Button variant="contained" onClick={sendRequest}>
+          <Button variant="contained" onClick={sendCoin}>
             Confirm
           </Button>
+          <hr />
+          {result ? (
+            <div className="message">{result.resultMessage}</div>
+          ) : null}
           <hr />
           <Button variant="contained">
             <Link to="/account">Go to Account</Link>
