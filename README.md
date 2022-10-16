@@ -9,9 +9,16 @@
 #### 구조
 
 - server (node.js) : REST API
-  - iota node.js sdk 버전
-  - @iota/wallet": "^1.0.17
+  - express
+  - iota node.js sdk 버전 (@iota/wallet": "^1.0.17)
 - client (chrome-extension)
+  - react.js
+  - MUI
+  - recoil (상태관리)
+
+#### 프로젝트 소개 페이지
+
+- [notion페이지](https://www.notion.so/d075796aa2a44c86bcc476ee41f452f8)
 
 #### 관련링크
 
@@ -22,11 +29,29 @@
 - https://github.com/iotaledger/wallet.rs
   - IOTA SDK github
 
-#### Client
+#### 사용법
+
+- client
+
+  - cd client/chrome-ext-react
+  - npm install
+  - npm build
+  - 생성된 build 폴더를 크롬익스텐션 load unpacked로 추가하여 사용
+  - 계정생성(니모닉, 주소) -> 로그인 -> MyWallet -> send
+
+- server
+  - cd server
+  - npm install
+  - npm start
+  - http://localhost:8080 (REST API 호출)
+
+#### Client 소개
 
 - chrome extension 사용
+  - react.js, MUI, recoil 이용
+  - REST API 호출하여 계정생성(니모닉, 주소), 로그인, 잔액조회, 코인전송 기능
 
-#### Server REST API (JSON)
+#### Server REST API 소개
 
 - 계정확인
 - POST : /wallet/account (username, password)
