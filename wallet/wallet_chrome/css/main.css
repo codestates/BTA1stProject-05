@@ -4,12 +4,15 @@
     .navbar-toggler.toggler-example {
     cursor: pointer;
     }
-    . -text {
-    color: aqua;
-    }
-    . -text {
-    color:burlywood;    
-    }
-    . -text {
-    color:darkkhaki:    
-    }
+    .dark-blue-text {
+        color: #5f7bec;
+        }
+    .dark-red-text {
+        color: #f7266c;
+        }
+    .dark-brown-text {
+        color: #3f3024;
+        }
+    .dark-mint-text {
+        color: #8cf5e3;
+        }

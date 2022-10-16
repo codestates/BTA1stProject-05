@@ -11,7 +11,7 @@ const Home = () => {
       로그인 되어 있으면 */}
       <Stack spacing={2}>
         <h1>IOTA Wallet</h1>
-        <p>IOTA 지갑으로 계정, 니모닉 생성, 코인잔액 확인, 송금 가능</p>
+        <p>IOTA 지갑으로 유저계정, 니모닉 생성, 코인잔액 확인, 송금 가능</p>
 
         <Button variant="contained">
           <Link to="/login">Login</Link>
@@ -21,7 +21,7 @@ const Home = () => {
           <Link to="/signup">Signup</Link>
         </Button>
         <hr />
-        <h3>아래는 테스트 페이지</h3>
+        <h3>하단 테스트 페이지</h3>
         <Button variant="contained">
           <Link to="/account">Account</Link>
         </Button>
